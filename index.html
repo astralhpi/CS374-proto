@@ -25,7 +25,7 @@
       }
 
       .footer{
-        height: 230px;
+        height: 220px;
         position: fixed;
         bottom: 0;
         color: white;
@@ -159,14 +159,14 @@
         $("#fold-button").on('click', function(){
           if(!folded){
             $(".thumbnails").hide();
-            $(".footer").height(250+"px");
-            $("#fold-button").addClass("glyphicon-chevron-down");
-            $("#fold-button").removeClass("glyphicon-chevron-up");
+            $(".footer").height(220+"px");
+            $("#fold-button").removeClass("glyphicon-chevron-down");
+            $("#fold-button").addClass("glyphicon-chevron-up");
           }else{
             $(".thumbnails").show();
             $(".footer").height(600+"px");
-            $("#fold-button").removeClass("glyphicon-chevron-down");
-            $("#fold-button").addClass("glyphicon-chevron-up");
+            $("#fold-button").addClass("glyphicon-chevron-down");
+            $("#fold-button").removeClass("glyphicon-chevron-up");
           }
 
           console.log(folded);
@@ -186,8 +186,8 @@
     <div class="content clearfix">
     </div>
   <div class="footer">
-    <div style="background-color: #c2c2c2; padding:10px;"><h3> 나의 장바구니
-      <span class="pull-right"><em class="glyphicon glyphicon-chevron-down" id="fold-button"></em></span></h3></div>
+    <div style="background-color: #c2c2c2; padding:10px;"><h4> 나의 장바구니
+      <span class="pull-right"><em class="glyphicon glyphicon-chevron-up" id="fold-button"></em></span></h4></div>
     <div class="row">
       <div class="progressbar-section col-sm-9" style="padding-top: 10px;">
         <div class="progress">
