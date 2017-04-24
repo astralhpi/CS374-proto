@@ -27,7 +27,7 @@
       }
 
       .footer{
-        height: 220px;
+        height: 170px;
         position: fixed;
         bottom: 0;
         color: white;
@@ -42,6 +42,27 @@
 
       .footer .thumbnails .thumbnail{
         height: 250px;
+      }
+
+
+      .progressbar-section{
+        position: relative;
+      }
+
+      #price-graph, #freeship-graph{
+        position: absolute;
+        width: 95%;
+        top: 10px;
+      }
+
+      #freeship-graph{
+        opacity: 0.2;
+      }
+
+      .label-section{
+        color: gray;
+        text-align: center;
+        top: 2px;
       }
 
     </style>
@@ -181,9 +202,11 @@
 
             if (total > 30000) {
               $(".shipping-fee").text("(무료 배송)");
+              $("#freeship-progress-bar").text("");
             }
             else {
               $(".shipping-fee").text("(배송료 3,000원 포함)");
+              $("#freeship-progress-bar").text("30,000원 이상 구매시 무료 배송");
             }
 
             classes = new Array(...clsQueue);
@@ -212,12 +235,12 @@
         $("#fold-button").on('click', function(){
           if(!folded){
             $(".thumbnails").hide();
-            $(".footer").height(220+"px");
+            $(".footer").height(170+"px");
             $("#fold-button").removeClass("glyphicon-chevron-down");
             $("#fold-button").addClass("glyphicon-chevron-up");
           }else{
             $(".thumbnails").show();
-            $(".footer").height(470+"px");
+            $(".footer").height(420+"px");
             $("#fold-button").addClass("glyphicon-chevron-down");
             $("#fold-button").removeClass("glyphicon-chevron-up");
           }
@@ -242,16 +265,19 @@
     <div style="background-color: #c2c2c2; padding:10px;"><h4> 나의 장바구니
       <span class="pull-right"><em class="glyphicon glyphicon-chevron-up" id="fold-button"></em></span></h4></div>
     <div class="row">
-      <div class="progressbar-section col-sm-9" style="padding-top: 10px;">
+      <div class="label-section col-sm-1">
+        <h5 class="progress-label">주문금액</h5>
+      </div>
+      <div class="progressbar-section col-sm-8" style="padding-top: 10px;">
         <div id="price-graph" class="progress">
         </div>
-        <div class="progress">
-          <div id="freeship-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-            30,000
+        <div id="freeship-graph" class="progress">
+          <div id="freeship-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="text-align: right;width: 100%;">
+            30,000원 이상 구매시 무료 배송 &nbsp
           </div>
         </div>
       </div>
-      <div class="price-section col-sm-3" style="color: #c2c2c2">
+      <div class="price-section col-sm-2" style="color: #c2c2c2">
         <div>Total <span class="total-price">0</span>원</div>
         <div class="shipping-fee"style="color: orange;">(배송료 3,000원 포함)</div>
       </div>
