@@ -194,6 +194,8 @@
               let graphBase = Math.max(total, 30000);
               $("#freeship-progress-bar").attr("ara-valuemax", graphBase);
               $("#freeship-progress-bar").width(30000/graphBase*100 + '%');
+
+              $(".empty-cart").text((cart.length === 0)?"장바구니가 비어있습니다.":"");
             }
 
             update();
@@ -208,10 +210,6 @@
               cart.splice(index, 1);
               update();
             });
-            item.on("click", function() {
-              // 아이템 삭제합시다.
-            });
-
 
             classes = new Array(...clsQueue);
             $("#price-graph").html('');
@@ -288,10 +286,11 @@
       </div>
     </div>
 
-    <div class="row thumbnails">
-
+    <div class="row thumbnails" style="color:gray; text-align:center;">
+      <span class="empty-cart">
+        장바구니가 비어있습니다.
+      </span>
     </div>
     <br>
   </div>
   </body>
-</html>
