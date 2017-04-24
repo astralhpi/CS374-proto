@@ -169,7 +169,7 @@
             let html = `<div class="col-sm-2 col-md-2 product">
               <div class="thumbnail">
                 <span class="close"> <em class="glyphicon glyphicon-remove"></em></span>
-                <img src="${tmp.img}" alt=""/>
+                <img src="${tmp.img}" alt="" width="90%" height="90%"/>
                 <div class="caption">
                   <h6>${tmp.name}</h6>
                   <p>${tmp.price.format()}원</p>
@@ -188,7 +188,7 @@
               }
               else {
                 $(".shipping-fee").text("(배송료 3,000원 포함)");
-                $("#freeship-progress-bar").text("30,000원 이상 구매시 무료 배송 ");
+                $("#freeship-progress-bar").html("30,000원 이상 구매시 무료 배송 &nbsp;");
               }
 
               let graphBase = Math.max(total, 30000);
@@ -275,7 +275,7 @@
         </div>
         <div id="freeship-graph" class="progress">
           <div id="freeship-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="text-align: right;width: 100%;">
-            30,000원 이상 구매시 무료 배송 &nbsp
+            30,000원 이상 구매시 무료 배송 &nbsp;
           </div>
         </div>
       </div>
