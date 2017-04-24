@@ -182,6 +182,18 @@
             function update(){
               total = _.sum(_.map(cart, "price"));
               $(".total-price").text(total.format());
+              if (total > 30000) {
+                $(".shipping-fee").text("(무료 배송)");
+                $("#freeship-progress-bar").text("");
+              }
+              else {
+                $(".shipping-fee").text("(배송료 3,000원 포함)");
+                $("#freeship-progress-bar").text("30,000원 이상 구매시 무료 배송 ");
+              }
+
+              let graphBase = Math.max(total, 30000);
+              $("#freeship-progress-bar").attr("ara-valuemax", graphBase);
+              $("#freeship-progress-bar").width(30000/graphBase*100 + '%');
             }
 
             update();
@@ -200,20 +212,10 @@
               // 아이템 삭제합시다.
             });
 
-            if (total > 30000) {
-              $(".shipping-fee").text("(무료 배송)");
-              $("#freeship-progress-bar").text("");
-            }
-            else {
-              $(".shipping-fee").text("(배송료 3,000원 포함)");
-              $("#freeship-progress-bar").text("30,000원 이상 구매시 무료 배송");
-            }
 
             classes = new Array(...clsQueue);
             $("#price-graph").html('');
             let graphBase = Math.max(total, 30000);
-            $("#freeship-progress-bar").attr("ara-valuemax", graphBase);
-            $("#freeship-progress-bar").width(30000/graphBase*100 + '%');
             for (let product of cart) {
               $("#price-graph").append(`
                   <div class="progress-bar ${classes[0]}"
