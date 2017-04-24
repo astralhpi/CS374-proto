@@ -36,7 +36,7 @@
       }
 
       .footer .thumbnails{
-        height: 350px;
+        /*height: 350px;*/
       }
 
       .footer .thumbnails .thumbnail{
@@ -145,7 +145,8 @@
             // 대충 여기에 상품 넣는 처리하셈
             console.log(tmp);
             let html = `<div class="col-sm-4 col-md-3 product">
-              <div class="thumbnail" style="height: 300px;">
+              <div class="thumbnail">
+                <span class="close"> <em class="glyphicon glyphicon-remove"></em></span>
                 <img src="${tmp.img}" alt=""/>
                 <div class="caption">
                   <h4>${tmp.name}</h4>
@@ -154,11 +155,25 @@
               </div>
             </div>
             `;
+
             let total = _.sum(_.map(cart, "price"));
-            $(".total-price").text(total.format());
+            function update(){
+              total = _.sum(_.map(cart, "price"));
+              $(".total-price").text(total.format());
+            }
+
+            update();
 
             let item = $(html);
             $thumbnails.append(item);
+            item.find(".close").on('click', function(e){
+              let product = $(e.target).parents(".product");
+              let index = $(product[0].parentElement).children().toArray().indexOf(product[0]);
+              $(product[0]).remove();
+              $("#price-graph").children().toArray()[index].remove();
+              cart.splice(index, 1);
+              update();
+            });
             item.on("click", function() {
               // 아이템 삭제합시다.
             });
