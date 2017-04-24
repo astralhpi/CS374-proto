@@ -51,6 +51,7 @@
 
       $(document).ready(function (){
         let total = 0;
+        let cart = [];
         let products = [
         {
           name: "센카 퍼펙트 휍 N 클렌징 폼, 120g 2개",
@@ -114,6 +115,11 @@
         }
         ];
 
+        let clsQueue = [
+          "progress-bar-success",
+          "progress-bar-warning",
+          "progress-bar-danger"];
+
         let content = $(".content");
         for (let product of products) 
         {
@@ -134,6 +140,7 @@
           let tmp = product;
           let $thumbnails = $(".thumbnails");
           dom.find(".btn").on("click", function(){
+            cart.push(tmp);
             // 대충 여기에 상품 넣는 처리하셈
             console.log(tmp);
             let html = `<div class="col-sm-4 col-md-3 product">
@@ -152,10 +159,24 @@
             $thumbnails.append($(html));
 
             if (total > 30000) {
-              $(".shipping-fee").text("(무료 배송)")
+              $(".shipping-fee").text("(무료 배송)");
             }
             else {
-              $(".shipping-fee").text("(배송료 3,000원 포함)")
+              $(".shipping-fee").text("(배송료 3,000원 포함)");
+            }
+
+            classes = new Array(...clsQueue);
+            $("#price-graph").html('');
+            let graphBase = Math.max(total, 30000);
+            for (let product of cart) {
+              $("#price-graph").append(`
+                  <div class="progress-bar ${classes[0]}"
+                       style="width: ${product.price/graphBase*100}%">
+                  ${product.price.format()}
+                  </div>
+                  `);
+              classes.push(classes.shift());
+              console.log(classes);
             }
           });
         }
@@ -197,16 +218,7 @@
       <span class="pull-right"><em class="glyphicon glyphicon-chevron-up" id="fold-button"></em></span></h4></div>
     <div class="row">
       <div class="progressbar-section col-sm-9" style="padding-top: 10px;">
-        <div class="progress">
-          <div class="progress-bar progress-bar-success" style="width: 35%">
-            19,000
-          </div>
-          <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
-            12,000
-          </div>
-          <div class="progress-bar progress-bar-danger" style="width: 10%">
-            3,000
-          </div>
+        <div id="price-graph" class="progress">
         </div>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
