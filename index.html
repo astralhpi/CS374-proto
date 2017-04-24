@@ -18,7 +18,7 @@
     <style type="text/css" media="screen">
       .content {
         padding: 20px;
-        margin-bottom: 220px;
+        margin-bottom: 300px;
       }
 
       .product .thumbnail .caption h4 {
@@ -247,7 +247,12 @@
           console.log(folded);
           folded = !folded;
         })
+
+
       });
+      function readyAlert(){
+        alert("We will provide soon!!!!!");
+      }
     </script>
   </head>
   <body>
@@ -261,7 +266,7 @@
     <div class="content clearfix">
     </div>
   <div class="footer">
-    <div class="cart-header" style="background-color: #c2c2c2; padding:2px; padding-left:10px; padding-right:20px"><h5> 나의 장바구니
+    <div class="cart-header" style="background-color: orange; padding:2px; padding-left:10px; padding-right:20px"><h5> 나의 장바구니
       <span class="pull-right"><em class="glyphicon glyphicon-chevron-up" id="fold-button"></em></span></h5></div>
     <div class="row">
       <div class="label-section col-sm-1">
@@ -281,8 +286,8 @@
         <div class="shipping-fee"style="color: orange;">(배송료 3,000원 포함)</div>
       </div>
       <div class="buttons pull-right col-sm-2" style="padding: 3px;">
-        <button type="button" class="btn btn-default">모바일 주문하기</button>
-        <button type="button" class="btn btn-default">주문하기</button>
+        <button type="button" class="btn btn-default" onclick="readyAlert()">모바일 주문하기</button>
+        <button type="button" class="btn btn-default" onclick="readyAlert()">주문하기</button>
       </div>
     </div>
 
