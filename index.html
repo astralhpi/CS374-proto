@@ -204,7 +204,7 @@
             $thumbnails.append(item);
             item.find(".close").on('click', function(e){
               let product = $(e.target).parents(".product");
-              let index = $(product[0].parentElement).children().toArray().indexOf(product[0]);
+              let index = $(product[0].parentElement).children().filter(".product").toArray().indexOf(product[0]);
               $(product[0]).remove();
               $("#price-graph").children().toArray()[index].remove();
               cart.splice(index, 1);
