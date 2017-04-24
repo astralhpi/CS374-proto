@@ -13,6 +13,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+
     <style type="text/css" media="screen">
       .content {
         padding: 20px;
@@ -50,7 +52,6 @@
       };
 
       $(document).ready(function (){
-        let total = 0;
         let cart = [];
         let products = [
         {
@@ -153,10 +154,14 @@
               </div>
             </div>
             `;
-            total += tmp.price;
-            console.log(total);
+            let total = _.sum(_.map(cart, "price"));
             $(".total-price").text(total.format());
-            $thumbnails.append($(html));
+
+            let item = $(html);
+            $thumbnails.append(item);
+            item.on("click", function() {
+              // 아이템 삭제합시다.
+            });
 
             if (total > 30000) {
               $(".shipping-fee").text("(무료 배송)");
