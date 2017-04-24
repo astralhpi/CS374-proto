@@ -36,12 +36,12 @@
       }
 
       .footer .thumbnails{
-        height: 350px;
+        height: 250px;
         overflow-y: scroll;
       }
 
       .footer .thumbnails .thumbnail{
-        height:350px;
+        height: 250px;
       }
 
     </style>
@@ -145,12 +145,12 @@
             cart.push(tmp);
             // 대충 여기에 상품 넣는 처리하셈
             console.log(tmp);
-            let html = `<div class="col-sm-4 col-md-3 product">
+            let html = `<div class="col-sm-2 col-md-2 product">
               <div class="thumbnail">
                 <span class="close"> <em class="glyphicon glyphicon-remove"></em></span>
                 <img src="${tmp.img}" alt=""/>
                 <div class="caption">
-                  <h4>${tmp.name}</h4>
+                  <h6>${tmp.name}</h6>
                   <p>${tmp.price.format()}원</p>
                 </div>
               </div>
@@ -217,7 +217,7 @@
             $("#fold-button").addClass("glyphicon-chevron-up");
           }else{
             $(".thumbnails").show();
-            $(".footer").height(600+"px");
+            $(".footer").height(470+"px");
             $("#fold-button").addClass("glyphicon-chevron-down");
             $("#fold-button").removeClass("glyphicon-chevron-up");
           }
