@@ -50,15 +50,31 @@
 
       #price-graph, #freeship-graph{
         position: absolute;
-        width: 95%;
+        width: 90%;
         top: 10px;
+        overflow: visible;
       }
 
       #freeship-graph:after{
         content: url("./image/delivery_free.png");
+        display: inline-block;
+        position: absolute;
+        top: -18px;
+        right: -70px;
+        transform: scale(0.7);
+        opacity: 0.4;
+      }
+
+      #freeship-graph.activated:after{
+        opacity: 1.0;
       }
 
       #freeship-graph{
+        background-color: rgba(255, 255, 255, 0.4);
+        background-image: none;
+      }
+
+      #freeship-graph .progress-bar{
         opacity: 0.2;
       }
 
@@ -189,10 +205,12 @@
               if (total > 30000) {
                 $(".shipping-fee").text("(무료 배송)");
                 $("#freeship-progress-bar").text("");
+                $("#freeship-graph").addClass("activated");
               }
               else {
                 $(".shipping-fee").text("(배송료 3,000원 별도)");
                 $("#freeship-progress-bar").html("30,000원 이상 구매시 무료 배송 &nbsp;");
+                $("#freeship-graph").removeClass("activated");
               }
 
               $(".total-price").text(total.format());
