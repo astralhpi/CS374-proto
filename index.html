@@ -196,6 +196,20 @@
               //$("#freeship-progress-bar").attr("ara-valuemax", graphBase);
 
               $(".empty-cart").text((cart.length === 0)?"장바구니가 비어있습니다.":"");
+
+              let classes = new Array(...clsQueue);
+              $("#price-graph").html('');
+              for (let product of cart) {
+                $("#price-graph").append(`
+                    <div class="progress-bar ${classes[0]}"
+                         style="width: ${product.price/graphBase*100}%">
+                    ${product.price.format()}
+                    </div>
+                    `);
+                classes.push(classes.shift());
+              }
+
+              $("#free-shipping-bar").attr("style", "width:" + 30000/graphBase * 100 + "%");
             }
 
             update();
@@ -211,20 +225,6 @@
               update();
             });
 
-            classes = new Array(...clsQueue);
-            $("#price-graph").html('');
-            let graphBase = Math.max(total, 30000);
-            for (let product of cart) {
-              $("#price-graph").append(`
-                  <div class="progress-bar ${classes[0]}"
-                       style="width: ${product.price/graphBase*100}%">
-                  ${product.price.format()}
-                  </div>
-                  `);
-              classes.push(classes.shift());
-            }
-
-            $("#free-shipping-bar").attr("style", "width:" + 30000/graphBase * 100 + "%");
           });
         }
 
